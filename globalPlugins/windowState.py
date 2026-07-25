@@ -1,5 +1,5 @@
 # WindowState - NVDA add-on to announce and query foreground window state
-# Author: Lanie Carmelo-Molinar
+# Author: Lanie Carmelo-Molinar <lanie@lanie.work>
 # License: GPL v2
 #
 # Adds a command (NVDA+shift+t) to announce the state of the current
@@ -16,9 +16,11 @@
 #   quarter of the screen
 #
 # v1.0.0: Initial release.
+# v1.0.1: Aligned code style with NVDA conventions, added email to manifest.
 
 import globalPluginHandler
 import scriptHandler
+from scriptHandler import script
 import ui
 import config
 import gui
@@ -27,7 +29,10 @@ import wx
 import api
 import winUser
 import winKernel
-from ctypes import Structure, wintypes, windll, byref, sizeof
+import speech
+from ctypes import Structure, byref, sizeof
+from ctypes.wintypes import DWORD, POINT, RECT, UINT
+from utils.security import objectBelowLockScreenAndWindowsIsLocked
 
 # ---------------------------------------------------------------------------
 # Constants
@@ -75,65 +80,71 @@ class WINDOWPLACEMENT(Structure):
 	Not available in ctypes.wintypes, so we define it ourselves.
 	"""
 	_fields_ = [
-		("length", wintypes.UINT),
-		("flags", wintypes.UINT),
-		("showCmd", wintypes.UINT),
-		("ptMinPosition", wintypes.POINT),
-		("ptMaxPosition", wintypes.POINT),
-		("rcNormalPosition", wintypes.RECT),
+		("length", UINT),
+		("flags", UINT),
+		("showCmd", UINT),
+		("ptMinPosition", POINT),
+		("ptMaxPosition", POINT),
+		("rcNormalPosition", RECT),
 	]
+
+	def __init__(self):
+		super().__init__()
+		self.length = sizeof(WINDOWPLACEMENT)
 
 
 class MONITORINFO(Structure):
 	"""Win32 MONITORINFO structure for monitor work area."""
 	_fields_ = [
-		("cbSize", wintypes.DWORD),
-		("rcMonitor", wintypes.RECT),
-		("rcWork", wintypes.RECT),
-		("dwFlags", wintypes.DWORD),
+		("cbSize", DWORD),
+		("rcMonitor", RECT),
+		("rcWork", RECT),
+		("dwFlags", DWORD),
 	]
 
+	def __init__(self):
+		super().__init__()
+		self.cbSize = sizeof(MONITORINFO)
 
-def _get_window_placement(hwnd):
+
+def getWindowPlacement(hwnd: int) -> int | None:
 	"""Get WINDOWPLACEMENT for a window handle.
 	Returns the showCmd value (1=normal, 2=minimized, 3=maximized) or None on failure.
 	"""
 	try:
 		placement = WINDOWPLACEMENT()
-		placement.length = sizeof(WINDOWPLACEMENT)
-		if windll.user32.GetWindowPlacement(hwnd, byref(placement)):
+		if winKernel.windll.user32.GetWindowPlacement(hwnd, byref(placement)):
 			return placement.showCmd
 	except Exception:
 		pass
 	return None
 
 
-def _get_window_rect(hwnd):
+def getWindowRect(hwnd: int) -> tuple[int, int, int, int] | None:
 	"""Get the bounding rectangle of a window.
 	Returns (left, top, right, bottom) or None on failure.
 	"""
 	try:
-		rect = wintypes.RECT()
-		if windll.user32.GetWindowRect(hwnd, byref(rect)):
+		rect = RECT()
+		if winKernel.windll.user32.GetWindowRect(hwnd, byref(rect)):
 			return (rect.left, rect.top, rect.right, rect.bottom)
 	except Exception:
 		pass
 	return None
 
 
-def _get_monitor_info(hwnd):
+def getMonitorInfo(hwnd: int) -> tuple[int, int, int, int] | None:
 	"""Get the work area of the monitor that contains the given window.
 	The work area excludes the taskbar.
 	Returns (left, top, right, bottom) of the work area or None on failure.
 	"""
 	try:
-		monitor = windll.user32.MonitorFromWindow(hwnd, 2)  # MONITOR_DEFAULTTONEAREST
+		monitor = winKernel.windll.user32.MonitorFromWindow(hwnd, 2)  # MONITOR_DEFAULTTONEAREST
 		if not monitor:
 			return None
 
 		info = MONITORINFO()
-		info.cbSize = sizeof(MONITORINFO)
-		if windll.user32.GetMonitorInfoW(monitor, byref(info)):
+		if winKernel.windll.user32.GetMonitorInfoW(monitor, byref(info)):
 			work = info.rcWork
 			return (work.left, work.top, work.right, work.bottom)
 	except Exception:
@@ -141,7 +152,11 @@ def _get_monitor_info(hwnd):
 	return None
 
 
-def _detect_snap_state(hwnd, work_area, window_rect):
+def detectSnapState(
+		hwnd: int,
+		workArea: tuple[int, int, int, int],
+		windowRect: tuple[int, int, int, int],
+) -> str | None:
 	"""Detect if a window is snapped to a half or quarter of the screen.
 
 	Compares the window's actual rect against the monitor's work area.
@@ -151,65 +166,65 @@ def _detect_snap_state(hwnd, work_area, window_rect):
 	Returns a state string (one of the MSG_ constants) or None if the
 	window doesn't appear to be snapped to a specific position.
 	"""
-	if not work_area or not window_rect:
+	if not workArea or not windowRect:
 		return None
 
-	wl, wt, wr, wb = work_area
+	wl, wt, wr, wb = workArea
 	wl, wt, wr, wb = int(wl), int(wt), int(wr), int(wb)
 
-	win_l, win_t, win_r, win_b = window_rect
+	win_l, win_t, win_r, win_b = windowRect
 	win_l, win_t, win_r, win_b = int(win_l), int(win_t), int(win_r), int(win_b)
 
-	work_width = wr - wl
-	work_height = wb - wt
+	workWidth = wr - wl
+	workHeight = wb - wt
 
 	# Tolerance for border/frame differences (pixels)
-	tol = max(15, work_width // 50)
+	tol = max(15, workWidth // 50)
 
 	# Check if the window fills the full width
-	full_width = abs((win_r - win_l) - work_width) <= tol
+	fullWidth = abs((win_r - win_l) - workWidth) <= tol
 	# Check if the window fills the full height
-	full_height = abs((win_b - win_t) - work_height) <= tol
+	fullHeight = abs((win_b - win_t) - workHeight) <= tol
 
-	if full_width and full_height:
+	if fullWidth and fullHeight:
 		# Window fills the entire work area - this is maximized, not snapped
 		return None
 
-	half_width = abs((win_r - win_l) - (work_width // 2)) <= tol
-	half_height = abs((win_b - win_t) - (work_height // 2)) <= tol
+	halfWidth = abs((win_r - win_l) - (workWidth // 2)) <= tol
+	halfHeight = abs((win_b - win_t) - (workHeight // 2)) <= tol
 
-	at_left = abs(win_l - wl) <= tol
-	at_right = abs(win_r - wr) <= tol
-	at_top = abs(win_t - wt) <= tol
-	at_bottom = abs(win_b - wb) <= tol
+	atLeft = abs(win_l - wl) <= tol
+	atRight = abs(win_r - wr) <= tol
+	atTop = abs(win_t - wt) <= tol
+	atBottom = abs(win_b - wb) <= tol
 
 	# Half-screen snaps
-	if half_width and full_height:
-		if at_left:
+	if halfWidth and fullHeight:
+		if atLeft:
 			return MSG_DOCKED_LEFT
-		if at_right:
+		if atRight:
 			return MSG_DOCKED_RIGHT
-	if half_height and full_width:
-		if at_top:
+	if halfHeight and fullWidth:
+		if atTop:
 			return MSG_DOCKED_TOP
-		if at_bottom:
+		if atBottom:
 			return MSG_DOCKED_BOTTOM
 
 	# Quarter-screen snaps
-	if half_width and half_height:
-		if at_left and at_top:
+	if halfWidth and halfHeight:
+		if atLeft and atTop:
 			return MSG_TOP_LEFT
-		if at_right and at_top:
+		if atRight and atTop:
 			return MSG_TOP_RIGHT
-		if at_left and at_bottom:
+		if atLeft and atBottom:
 			return MSG_BOTTOM_LEFT
-		if at_right and at_bottom:
+		if atRight and atBottom:
 			return MSG_BOTTOM_RIGHT
 
 	return None
 
 
-def get_window_state_text(hwnd=None):
+def getWindowStateText(hwnd: int | None = None) -> str:
 	"""Determine the state of a window and return a human-readable string.
 
 	Args:
@@ -224,30 +239,30 @@ def get_window_state_text(hwnd=None):
 		return MSG_UNKNOWN
 
 	# Check minimized first - minimized windows have showCmd == SW_SHOWMINIMIZED
-	show_cmd = _get_window_placement(hwnd)
-	if show_cmd is not None:
-		if show_cmd == SW_SHOWMINIMIZED:
+	showCmd = getWindowPlacement(hwnd)
+	if showCmd is not None:
+		if showCmd == SW_SHOWMINIMIZED:
 			return MSG_MINIMIZED
-		if show_cmd == SW_SHOWMAXIMIZED:
+		if showCmd == SW_SHOWMAXIMIZED:
 			return MSG_MAXIMIZED
 
 	# If not maximized or minimized, check for snap positions
-	window_rect = _get_window_rect(hwnd)
-	work_area = _get_monitor_info(hwnd)
-	if window_rect and work_area:
-		snap = _detect_snap_state(hwnd, work_area, window_rect)
+	windowRect = getWindowRect(hwnd)
+	workArea = getMonitorInfo(hwnd)
+	if windowRect and workArea:
+		snap = detectSnapState(hwnd, workArea, windowRect)
 		if snap:
 			return snap
 
 	# If we get here, the window is in normal/restored state
-	if show_cmd is not None:
+	if showCmd is not None:
 		return MSG_RESTORED
 
 	# Fallback: try IsZoomed/IsIconic directly
 	try:
-		if windll.user32.IsIconic(hwnd):
+		if winKernel.windll.user32.IsIconic(hwnd):
 			return MSG_MINIMIZED
-		if windll.user32.IsZoomed(hwnd):
+		if winKernel.windll.user32.IsZoomed(hwnd):
 			return MSG_MAXIMIZED
 	except Exception:
 		pass
@@ -260,7 +275,7 @@ def get_window_state_text(hwnd=None):
 # ---------------------------------------------------------------------------
 
 class SettingsPanel(gui.settingsDialogs.SettingsPanel):
-	title = "Window State"
+	title = _("Window State")
 	_plugin = None
 
 	def makeSettings(self, sizer):
@@ -270,7 +285,7 @@ class SettingsPanel(gui.settingsDialogs.SettingsPanel):
 			self, label=_("Append window state to NVDA+T title announcement")
 		)
 		self._appendToTitleCheckbox.SetValue(
-			self._to_bool(settings.get("appendToTitle", False))
+			self._toBool(settings.get("appendToTitle", False))
 		)
 		sizer.Add(self._appendToTitleCheckbox, border=10, flag=wx.ALL)
 
@@ -291,7 +306,7 @@ class SettingsPanel(gui.settingsDialogs.SettingsPanel):
 		settings["appendToTitle"] = self._appendToTitleCheckbox.IsChecked()
 
 	@staticmethod
-	def _to_bool(val, default=False):
+	def _toBool(val, default=False):
 		if isinstance(val, bool):
 			return val
 		if isinstance(val, str):
@@ -330,7 +345,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	# NVDA+Shift+T: Query window state
 	# -----------------------------------------------------------------------
 
-	@scriptHandler.script(
+	@script(
 		description=_(
 			# Translators: Input help message for the report window state command.
 			"Reports the state of the current foreground window "
@@ -341,14 +356,14 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		speakOnDemand=True,
 	)
 	def script_reportWindowState(self, gesture):
-		state_text = get_window_state_text()
-		ui.message(state_text)
+		stateText = getWindowStateText()
+		ui.message(stateText)
 
 	# -----------------------------------------------------------------------
 	# NVDA+T: Override title to optionally append window state
 	# -----------------------------------------------------------------------
 
-	@scriptHandler.script(
+	@script(
 		description=_(
 			# Translators: Input help message for the report title command (overridden).
 			"Reports the title of the current application or foreground window. "
@@ -362,6 +377,12 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	)
 	def script_title(self, gesture):
 		obj = api.getForegroundObject()
+		# This script is available on the lock screen via getSafeScripts, as such
+		# ensure the title does not contain secure information
+		# before announcing this object
+		if objectBelowLockScreenAndWindowsIsLocked(obj):
+			ui.message(gui.blockAction.Context.WINDOWS_LOCKED.translatedMessage)
+			return
 		title = obj.name
 		if not isinstance(title, str) or not title or title.isspace():
 			title = obj.appModule.appName if obj.appModule else None
@@ -370,29 +391,28 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			title = _("No title")
 
 		# Get the window state if the setting is enabled
-		append_state = False
+		appendState = False
 		try:
-			append_state = SettingsPanel._to_bool(
+			appendState = SettingsPanel._toBool(
 				config.conf[CONFIG_KEY].get("appendToTitle", False)
 			)
 		except (KeyError, AttributeError):
 			pass
 
-		state_text = ""
-		if append_state:
+		stateText = ""
+		if appendState:
 			hwnd = winUser.getForegroundWindow()
 			if hwnd:
-				state_text = get_window_state_text(hwnd)
+				stateText = getWindowStateText(hwnd)
 
 		repeatCount = scriptHandler.getLastScriptRepeatCount()
 		if repeatCount == 0:
-			if state_text:
-				ui.message(f"{title}, {state_text}")
+			if stateText:
+				ui.message(f"{title}, {stateText}")
 			else:
 				ui.message(title)
 		elif repeatCount == 1:
 			# Spell the title only (state not included in spelling)
-			import speech
 			speech.speakSpelling(title)
 		else:
 			# Copy title to clipboard (state not included in copy)

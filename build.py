@@ -5,7 +5,7 @@ import zipfile
 import os
 
 ADDON_NAME = "windowState"
-VERSION = "1.0.0"
+VERSION = "1.0.1"
 OUTPUT_FILE = f"{ADDON_NAME}-{VERSION}.nvda-addon"
 
 files = [
