@@ -28,9 +28,8 @@ import gui.settingsDialogs
 import wx
 import api
 import winUser
-import winKernel
 import speech
-from ctypes import Structure, byref, sizeof
+from ctypes import Structure, windll, byref, sizeof
 from ctypes.wintypes import DWORD, POINT, RECT, UINT
 from utils.security import objectBelowLockScreenAndWindowsIsLocked
 
@@ -113,7 +112,7 @@ def getWindowPlacement(hwnd: int) -> int | None:
 	"""
 	try:
 		placement = WINDOWPLACEMENT()
-		if winKernel.windll.user32.GetWindowPlacement(hwnd, byref(placement)):
+		if windll.user32.GetWindowPlacement(hwnd, byref(placement)):
 			return placement.showCmd
 	except Exception:
 		pass
@@ -126,7 +125,7 @@ def getWindowRect(hwnd: int) -> tuple[int, int, int, int] | None:
 	"""
 	try:
 		rect = RECT()
-		if winKernel.windll.user32.GetWindowRect(hwnd, byref(rect)):
+		if windll.user32.GetWindowRect(hwnd, byref(rect)):
 			return (rect.left, rect.top, rect.right, rect.bottom)
 	except Exception:
 		pass
@@ -139,12 +138,12 @@ def getMonitorInfo(hwnd: int) -> tuple[int, int, int, int] | None:
 	Returns (left, top, right, bottom) of the work area or None on failure.
 	"""
 	try:
-		monitor = winKernel.windll.user32.MonitorFromWindow(hwnd, 2)  # MONITOR_DEFAULTTONEAREST
+		monitor = windll.user32.MonitorFromWindow(hwnd, 2)  # MONITOR_DEFAULTTONEAREST
 		if not monitor:
 			return None
 
 		info = MONITORINFO()
-		if winKernel.windll.user32.GetMonitorInfoW(monitor, byref(info)):
+		if windll.user32.GetMonitorInfoW(monitor, byref(info)):
 			work = info.rcWork
 			return (work.left, work.top, work.right, work.bottom)
 	except Exception:
@@ -260,9 +259,9 @@ def getWindowStateText(hwnd: int | None = None) -> str:
 
 	# Fallback: try IsZoomed/IsIconic directly
 	try:
-		if winKernel.windll.user32.IsIconic(hwnd):
+		if windll.user32.IsIconic(hwnd):
 			return MSG_MINIMIZED
-		if winKernel.windll.user32.IsZoomed(hwnd):
+		if windll.user32.IsZoomed(hwnd):
 			return MSG_MAXIMIZED
 	except Exception:
 		pass
