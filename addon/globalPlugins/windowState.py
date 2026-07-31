@@ -74,10 +74,12 @@ MSG_UNKNOWN = _("unknown window state")
 # Win32 structures and functions for window placement and monitor info
 # ---------------------------------------------------------------------------
 
+
 class WINDOWPLACEMENT(Structure):
 	"""Win32 WINDOWPLACEMENT structure.
 	Not available in ctypes.wintypes, so we define it ourselves.
 	"""
+
 	_fields_ = [
 		("length", UINT),
 		("flags", UINT),
@@ -94,6 +96,7 @@ class WINDOWPLACEMENT(Structure):
 
 class MONITORINFO(Structure):
 	"""Win32 MONITORINFO structure for monitor work area."""
+
 	_fields_ = [
 		("cbSize", DWORD),
 		("rcMonitor", RECT),
@@ -152,9 +155,9 @@ def getMonitorInfo(hwnd: int) -> tuple[int, int, int, int] | None:
 
 
 def detectSnapState(
-		hwnd: int,
-		workArea: tuple[int, int, int, int],
-		windowRect: tuple[int, int, int, int],
+	hwnd: int,
+	workArea: tuple[int, int, int, int],
+	windowRect: tuple[int, int, int, int],
 ) -> str | None:
 	"""Detect if a window is snapped to a half or quarter of the screen.
 
@@ -273,6 +276,7 @@ def getWindowStateText(hwnd: int | None = None) -> str:
 # Settings panel
 # ---------------------------------------------------------------------------
 
+
 class SettingsPanel(gui.settingsDialogs.SettingsPanel):
 	title = _("Window State")
 	_plugin = None
@@ -281,10 +285,11 @@ class SettingsPanel(gui.settingsDialogs.SettingsPanel):
 		settings = config.conf[CONFIG_KEY]
 
 		self._appendToTitleCheckbox = wx.CheckBox(
-			self, label=_("Append window state to NVDA+T title announcement")
+			self,
+			label=_("Append window state to NVDA+T title announcement"),
 		)
 		self._appendToTitleCheckbox.SetValue(
-			self._toBool(settings.get("appendToTitle", False))
+			self._toBool(settings.get("appendToTitle", False)),
 		)
 		sizer.Add(self._appendToTitleCheckbox, border=10, flag=wx.ALL)
 
@@ -294,8 +299,8 @@ class SettingsPanel(gui.settingsDialogs.SettingsPanel):
 				"When enabled, pressing NVDA+T will announce the window title "
 				"followed by the window state (e.g. 'Firefox, maximized'). "
 				"This matches the JAWS behavior. Pressing NVDA+T twice to spell "
-				"or three times to copy is not affected."
-			)
+				"or three times to copy is not affected.",
+			),
 		)
 		helpText.Wrap(500)
 		sizer.Add(helpText, border=10, flag=wx.LEFT | wx.RIGHT | wx.BOTTOM)
@@ -317,8 +322,8 @@ class SettingsPanel(gui.settingsDialogs.SettingsPanel):
 # Global plugin
 # ---------------------------------------------------------------------------
 
-class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
+class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	# Script category for the Input Gestures dialog
 	scriptCategory = _("Window State")
 
@@ -348,7 +353,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		description=_(
 			# Translators: Input help message for the report window state command.
 			"Reports the state of the current foreground window "
-			"(maximized, restored, minimized, or snapped to a side or quarter of the screen)."
+			"(maximized, restored, minimized, or snapped to a side or quarter of the screen).",
 		),
 		category=_("Window State"),
 		gesture="kb:NVDA+shift+t",
@@ -368,7 +373,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			"Reports the title of the current application or foreground window. "
 			"If window state reporting is enabled in settings, the state is appended. "
 			"If pressed twice, spells the title. "
-			"If pressed three times, copies the title to the clipboard."
+			"If pressed three times, copies the title to the clipboard.",
 		),
 		category=_("System focus"),
 		gesture="kb:NVDA+t",
@@ -393,7 +398,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		appendState = False
 		try:
 			appendState = SettingsPanel._toBool(
-				config.conf[CONFIG_KEY].get("appendToTitle", False)
+				config.conf[CONFIG_KEY].get("appendToTitle", False),
 			)
 		except (KeyError, AttributeError):
 			pass

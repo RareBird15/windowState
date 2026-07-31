@@ -35,7 +35,7 @@ All commands can be remapped from NVDA's Input Gestures dialog under the "Window
 
 ## Author
 
-Lanie Carmelo-Molinar  
+Lanie Carmelo-Molinar
 https://lanie.work
 
 ## License
