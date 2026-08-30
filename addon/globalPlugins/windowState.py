@@ -18,6 +18,7 @@
 # v1.0.0: Initial release.
 # v1.0.1: Aligned code style with NVDA conventions, added email to manifest.
 
+import addonHandler
 import globalPluginHandler
 import scriptHandler
 from scriptHandler import script
@@ -32,6 +33,8 @@ import speech
 from ctypes import Structure, windll, byref, sizeof
 from ctypes.wintypes import DWORD, POINT, RECT, UINT
 from utils.security import objectBelowLockScreenAndWindowsIsLocked
+
+addonHandler.initTranslation()
 
 # ---------------------------------------------------------------------------
 # Constants
