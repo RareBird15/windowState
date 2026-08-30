@@ -23,11 +23,10 @@ addon_info = AddonInfo(
 	# Translators: Long description to be shown for this add-on on add-on information from add-on store
 	addon_description=_("""Adds a command to announce the state of the current foreground window (maximized, restored, minimized, or snapped to a side or quarter of the screen). Optionally appends the window state to NVDA+T like JAWS does. Helps blind users confirm whether a window is maximized without triggering the Windows snap layout chooser."""),
 	# version
-	addon_version="1.1.0",
+	addon_version="1.2.0",
 	# Brief changelog for this version
 	# Translators: what's new content for the add-on version to be shown in the add-on store
-	addon_changelog=_("""Adopted the NVDA add-on template for standardized builds and CI.
-Manifest URL now points to the GitHub repository."""),
+	addon_changelog=_("""The Desktop and other non-resizable windows now report "not resizable" instead of "restored" when queried with NVDA+Shift+T."""),
 	# Author(s)
 	addon_author="Lanie Carmelo-Molinar <lanie@lanie.work>",
 	# URL for the add-on documentation support

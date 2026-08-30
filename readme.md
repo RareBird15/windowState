@@ -18,6 +18,7 @@ NVDA doesn't tell you whether a window is maximized, restored, or snapped to a s
    - Minimized
    - Docked left, docked right, docked top, docked bottom (half-screen snaps)
    - Top left quarter, top right quarter, bottom left quarter, bottom right quarter
+   - Not resizable (for windows like the Desktop that can't be maximized or restored)
 
 2. **Optional: NVDA+T enhancement**: When enabled in settings, pressing NVDA+T will announce the window title followed by the state, e.g. "Firefox, maximized." This matches the JAWS behavior. Pressing NVDA+T twice to spell the title and three times to copy it to the clipboard are not affected.
 

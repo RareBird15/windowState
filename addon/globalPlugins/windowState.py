@@ -47,6 +47,10 @@ SW_SHOWMAXIMIZED = 3
 SW_SHOWMINIMIZED = 2
 SW_SHOWNORMAL = 1
 
+# Window style constants from winuser.h
+GWL_STYLE = -16
+WS_THICKFRAME = 0x00040000  # resizable border (also WS_SIZEBOX)
+
 # Translators: spoken when window is maximized
 MSG_MAXIMIZED = _("maximized")
 # Translators: spoken when window is restored (normal windowed mode)
@@ -71,6 +75,8 @@ MSG_BOTTOM_LEFT = _("bottom left quarter")
 MSG_BOTTOM_RIGHT = _("bottom right quarter")
 # Translators: spoken when window state cannot be determined
 MSG_UNKNOWN = _("unknown window state")
+# Translators: spoken when the window cannot be resized (e.g., the Desktop)
+MSG_NOT_RESIZABLE = _("not resizable")
 
 
 # ---------------------------------------------------------------------------
@@ -155,6 +161,21 @@ def getMonitorInfo(hwnd: int) -> tuple[int, int, int, int] | None:
 	except Exception:
 		pass
 	return None
+
+
+def isWindowResizable(hwnd: int) -> bool:
+	"""Check if a window has a resizable border (WS_THICKFRAME).
+
+	The Windows Desktop (Progman) and other non-resizable windows lack
+	this style, so reporting them as "restored" is misleading — they
+	can't be maximized or restored. Returns True on failure (assume
+	resizable) so we don't misreport normal windows.
+	"""
+	try:
+		style = windll.user32.GetWindowLongW(hwnd, GWL_STYLE)
+		return bool(style & WS_THICKFRAME)
+	except Exception:
+		return True
 
 
 def detectSnapState(
@@ -261,6 +282,8 @@ def getWindowStateText(hwnd: int | None = None) -> str:
 
 	# If we get here, the window is in normal/restored state
 	if showCmd is not None:
+		if not isWindowResizable(hwnd):
+			return MSG_NOT_RESIZABLE
 		return MSG_RESTORED
 
 	# Fallback: try IsZoomed/IsIconic directly
@@ -272,6 +295,8 @@ def getWindowStateText(hwnd: int | None = None) -> str:
 	except Exception:
 		pass
 
+	if not isWindowResizable(hwnd):
+		return MSG_NOT_RESIZABLE
 	return MSG_RESTORED
 
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.2.0
+
+- The Desktop and other non-resizable windows now report "not resizable" instead of "restored" when queried with NVDA+Shift+T. This matches JAWS behavior for windows that can't be maximized or restored.
+
 ## v1.1.0
 
 - Adopted the NVDA add-on template for standardized builds and CI/CD.
