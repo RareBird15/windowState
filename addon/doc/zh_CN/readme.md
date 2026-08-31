@@ -18,6 +18,7 @@ NVDA 在查询窗口标题时，不会告知您窗口是最大化、还原，还
    - 最小化
    - 左侧贴靠、右侧贴靠、顶部贴靠、底部贴靠（半屏贴靠）
    - 左上四分之一、右上四分之一、左下四分之一、右下四分之一
+   - Not resizable (for windows like the Desktop that can't be maximized or restored)
 
 2. **可选的 NVDA+T 增强**：在设置中启用后，按 NVDA+T 将读出窗口标题后跟状态，例如“Firefox, 最大化。”此行为与 JAWS 一致。按 NVDA+T 两次逐字朗读标题、按三次复制到剪贴板的功能不受影响。
 

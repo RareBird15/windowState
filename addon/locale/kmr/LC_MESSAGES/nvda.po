@@ -3,17 +3,17 @@ msgstr ""
 "Project-Id-Version: nvdaaddons\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
 "POT-Creation-Date: 2026-08-31 03:09+0000\n"
-"PO-Revision-Date: 2026-08-31 03:11\n"
+"PO-Revision-Date: 2026-08-31 03:10\n"
 "Last-Translator: \n"
-"Language-Team: Turkish\n"
-"Language: tr_TR\n"
+"Language-Team: Kurmanji (Kurdish)\n"
+"Language: kmr_TR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Crowdin-Project: nvdaaddons\n"
 "X-Crowdin-Project-ID: 780748\n"
-"X-Crowdin-Language: tr\n"
+"X-Crowdin-Language: kmr\n"
 "X-Crowdin-File: windowState.pot\n"
 "X-Crowdin-File-ID: 653\n"
 
@@ -21,62 +21,62 @@ msgstr ""
 #. Translators: spoken when window is maximized
 #: addon\globalPlugins\windowState.py:55
 msgid "maximized"
-msgstr "ekranı kaplamış"
+msgstr "herî zêdekirî"
 
 #. Translators: spoken when window is restored (normal windowed mode)
 #: addon\globalPlugins\windowState.py:57
 msgid "restored"
-msgstr "geri yüklenmiş"
+msgstr "sererastkirin"
 
 #. Translators: spoken when window is minimized
 #: addon\globalPlugins\windowState.py:59
 msgid "minimized"
-msgstr "simge durumuna küçültülmüş"
+msgstr "kêmkirî"
 
 #. Translators: spoken when window is docked to the left half
 #: addon\globalPlugins\windowState.py:61
 msgid "docked left"
-msgstr "sola yerleştirildi"
+msgstr "çepê ve girêdayî"
 
 #. Translators: spoken when window is docked to the right half
 #: addon\globalPlugins\windowState.py:63
 msgid "docked right"
-msgstr "sağa yerleştirildi"
+msgstr "rastê ve girêdayî"
 
 #. Translators: spoken when window is docked to the top half
 #: addon\globalPlugins\windowState.py:65
 msgid "docked top"
-msgstr "üste yerleştirildi"
+msgstr "serê daliqandî"
 
 #. Translators: spoken when window is docked to the bottom half
 #: addon\globalPlugins\windowState.py:67
 msgid "docked bottom"
-msgstr "alta yerleştirildi"
+msgstr "binê daliqandî"
 
 #. Translators: spoken when window is in the top-left quarter
 #: addon\globalPlugins\windowState.py:69
 msgid "top left quarter"
-msgstr "sol üst çeyrek"
+msgstr "çaryeka çepê ya jorîn"
 
 #. Translators: spoken when window is in the top-right quarter
 #: addon\globalPlugins\windowState.py:71
 msgid "top right quarter"
-msgstr "sağ üst çeyrek"
+msgstr "çaryeka jorîn a rastê"
 
 #. Translators: spoken when window is in the bottom-left quarter
 #: addon\globalPlugins\windowState.py:73
 msgid "bottom left quarter"
-msgstr "sol alt çeyrek"
+msgstr "çaryeka çepê ya jêrîn"
 
 #. Translators: spoken when window is in the bottom-right quarter
 #: addon\globalPlugins\windowState.py:75
 msgid "bottom right quarter"
-msgstr "sağ alt çeyrek"
+msgstr "çaryeka rastê ya jêrîn"
 
 #. Translators: spoken when window state cannot be determined
 #: addon\globalPlugins\windowState.py:77
 msgid "unknown window state"
-msgstr "bilinmeyen pencere durumu"
+msgstr "rewşa pencereyê nenas"
 
 #. Translators: spoken when the window cannot be resized (e.g., the Desktop)
 #: addon\globalPlugins\windowState.py:79
@@ -91,40 +91,40 @@ msgstr ""
 #: addon\globalPlugins\windowState.py:356
 #: addon\globalPlugins\windowState.py:386 buildVars.py:21
 msgid "Window State"
-msgstr "Pencere Durumu"
+msgstr "Rewşa Paceyê"
 
 #: addon\globalPlugins\windowState.py:317
 msgid "Append window state to NVDA+T title announcement"
-msgstr "NVDA+T başlığı oku seçeneğine pencere durumu ekle"
+msgstr "Rewşa pencereyê li ragihandina sernavê NVDA+T zêde bike"
 
 #: addon\globalPlugins\windowState.py:327
 msgid "When enabled, pressing NVDA+T will announce the window title followed by the window state (e.g. 'Firefox, maximized'). This matches the JAWS behavior. Pressing NVDA+T twice to spell or three times to copy is not affected."
-msgstr "Bu özellik etkinleştirildiğinde, NVDA+T tuşlarına basıldığında pencere başlığı ve ardından pencerenin durumu (örn. 'Firefox, tam ekran') sesli olarak duyurulur. Bu, JAWS'ın davranışına uygundur. NVDA+T tuşlarına iki kez basarak heceleme veya üç kez basarak kopyalama işlemleri bu ayardan etkilenmez."
+msgstr "Dema ku çalak be, pêlkirina NVDA+T dê sernavê pencereyê û dû re jî rewşa pencereyê ragihîne (mînak 'Firefox, herî zêdekirî'). Ev bi tevgera JAWS re li hev dike. Du caran pêlkirina NVDA+T ji bo nivîsandinê an sê caran pêlkirina NVDA+T ji bo kopîkirinê bandor nabe."
 
 #. Translators: Input help message for the report window state command.
 #: addon\globalPlugins\windowState.py:383
 msgid "Reports the state of the current foreground window (maximized, restored, minimized, or snapped to a side or quarter of the screen)."
-msgstr "Mevcut ön plandaki pencerenin durumunu seslendirir (ekranı kaplamış, eski haline getirilmiş, küçültülmüş veya ekranın bir kenarına ya da dörtte birine yapıştırılmış)."
+msgstr "Rewşa pencereya pêşiyê ya heyî radigihîne (mezintirîn, sererastkirî, kêmkirî, an jî li aliyek an çaryeka ekranê hatî kişandin)."
 
 #. Translators: Input help message for the report title command (overridden).
 #: addon\globalPlugins\windowState.py:401
 msgid "Reports the title of the current application or foreground window. If window state reporting is enabled in settings, the state is appended. If pressed twice, spells the title. If pressed three times, copies the title to the clipboard."
-msgstr "Geçerli uygulamanın veya ön plandaki pencerenin başlığını seslendirir. Ayarlarda pencere durumunun seslendirilmesi etkinleştirilmişse, durum bilgisi de eklenir. İki kez basıldığında başlık sesli olarak okunur. Üç kez basıldığında başlık panoya kopyalanır."
+msgstr "Sernavê serîlêdana heyî an pencereya pêşiyê radigihîne. Ger ragihandina rewşa pencereyê di mîhengan de çalak be, rewş lê tê zêdekirin. Ger du caran were pêlkirin, sernav tê nivîsandin. Ger sê caran were pêlkirin, sernavê li panoyê kopî dike."
 
 #: addon\globalPlugins\windowState.py:406
 msgid "System focus"
-msgstr "Sistem odağı"
+msgstr "Fokusa sîstemê"
 
 #. Translators: Reported when there is no title text for current program or window.
 #: addon\globalPlugins\windowState.py:423
 msgid "No title"
-msgstr "Başlık yok"
+msgstr "Sernav nînin"
 
 #. Add-on description
 #. Translators: Long description to be shown for this add-on on add-on information from add-on store
 #: buildVars.py:24
 msgid "Adds a command to announce the state of the current foreground window (maximized, restored, minimized, or snapped to a side or quarter of the screen). Optionally appends the window state to NVDA+T like JAWS does. Helps blind users confirm whether a window is maximized without triggering the Windows snap layout chooser."
-msgstr "Geçerli ön plandaki pencerenin durumunu (büyütülmüş, geri yüklenmiş, küçültülmüş veya ekranın bir kenarına ya da dörtte birine yapıştırılmış) seslendiren bir komut ekler. İsteğe bağlı olarak, JAWS’ın yaptığı gibi pencere durumunu NVDA+T’ye ekler. Görme engelli kullanıcıların, Windows’un yapıştırma düzeni seçicisini tetiklemeden bir pencerenin büyütülmüş olup olmadığını doğrulamasına yardımcı olur."
+msgstr "Fermanekê lê zêde dike da ku rewşa pencereya pêşiyê ya heyî ragihîne (mezintirîn, vegerandin, kêmkirin, an jî li aliyek an çaryeka ekranê hatî kişandin). Bi awayekî vebijarkî rewşa pencereyê li NVDA+T zêde dike mîna ku JAWS dike. Alîkariya bikarhênerên kor dike ku piştrast bikin ka pencereyek bêyî çalakkirina hilbijêra sêwirana snap-a Windows-ê herî zêde ye."
 
 #. Brief changelog for this version
 #. Translators: what's new content for the add-on version to be shown in the add-on store

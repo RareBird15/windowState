@@ -18,6 +18,7 @@ NVDA, başlığı sorguladığınızda pencerenin ekranı kapladığını, geri 
    - Simge durumuna küçültülmüş
    - Sola yerleştirildi, sağa yerleştirildi, üste yerleştirildi, alta yerleştirildi (yarım ekran yerleşimleri)
    - Sol üst çeyrek, sağ üst çeyrek, sol alt çeyrek, sağ alt çeyrek
+   - Not resizable (for windows like the Desktop that can't be maximized or restored)
 
 2. **İsteğe bağlı: NVDA+T geliştirmesi**: Ayarlarda etkinleştirildiğinde, NVDA+T tuşlarına basıldığında pencere başlığı ve ardından durumu sesli olarak duyurulur; örneğin, "Firefox, tam ekran." Bu, JAWS'ın davranışına uygundur. Başlığı hecelemek için NVDA+T tuşlarına iki kez basma ve panoya kopyalamak için üç kez basma işlemleri bu ayardan etkilenmez.
 
