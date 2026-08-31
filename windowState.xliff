@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en">
-<file id="readme.md" original="https://raw.githubusercontent.com/RareBird15/windowState/a159c3fbcf0136f4640e112183dfb86151e575e7/readme.md">
+<file id="readme.md" original="https://raw.githubusercontent.com/RareBird15/windowState/beb1ed5c4e87df96ad04f9143f89eeb6ed8b5804/readme.md">
 <skeleton>
 # $(ID:d76c3d0e-973c-495c-9991-2efa6bf9da35)
 
@@ -22,6 +22,7 @@ $(ID:570724c6-d6d3-43dc-af94-c42b1d95529f)
 $(ID:8a54e608-4913-46b7-8aab-0b8fec67cfc7)
 $(ID:af6f3546-d940-40a7-b716-db7a58810e4c)
 $(ID:d2edd386-8430-47b2-a532-b46805f3d13d)
+$(ID:f9e89c49-70cb-4487-a650-546153d838c4)
 
 2. $(ID:0b0c126b-2b40-4a50-85a2-9f2d94499a03)
 
@@ -162,9 +163,17 @@ $(ID:c42900d6-58dd-48f0-883a-3906bead49c7)
 <source>   - Top left quarter, top right quarter, bottom left quarter, bottom right quarter</source>
 </segment>
 </unit>
+<unit id="f9e89c49-70cb-4487-a650-546153d838c4">
+<notes>
+<note appliesTo="source">line: 22</note>
+</notes>
+<segment>
+<source>   - Not resizable (for windows like the Desktop that can't be maximized or restored)</source>
+</segment>
+</unit>
 <unit id="0b0c126b-2b40-4a50-85a2-9f2d94499a03">
 <notes>
-<note appliesTo="source">line: 23</note>
+<note appliesTo="source">line: 24</note>
 <note appliesTo="source">prefix: 2. </note>
 </notes>
 <segment>
@@ -173,7 +182,7 @@ $(ID:c42900d6-58dd-48f0-883a-3906bead49c7)
 </unit>
 <unit id="afafe799-5714-4d3f-93a0-328b358a986e">
 <notes>
-<note appliesTo="source">line: 25</note>
+<note appliesTo="source">line: 26</note>
 <note appliesTo="source">prefix: ## </note>
 </notes>
 <segment>
@@ -182,7 +191,7 @@ $(ID:c42900d6-58dd-48f0-883a-3906bead49c7)
 </unit>
 <unit id="06b9a302-d106-47cb-aed3-c89b8ea9ff46">
 <notes>
-<note appliesTo="source">line: 27</note>
+<note appliesTo="source">line: 28</note>
 </notes>
 <segment>
 <source>Open NVDA Settings &gt; Window State to configure:</source>
@@ -190,7 +199,7 @@ $(ID:c42900d6-58dd-48f0-883a-3906bead49c7)
 </unit>
 <unit id="ef5dc78d-c596-4234-b9e2-11312abc69a8">
 <notes>
-<note appliesTo="source">line: 29</note>
+<note appliesTo="source">line: 30</note>
 </notes>
 <segment>
 <source>- **Append window state to NVDA+T title announcement**: When checked, NVDA+T includes the window state after the title. Off by default.</source>
@@ -198,7 +207,7 @@ $(ID:c42900d6-58dd-48f0-883a-3906bead49c7)
 </unit>
 <unit id="8dfafc67-1bef-4194-b4f8-21df9b58ad09">
 <notes>
-<note appliesTo="source">line: 31</note>
+<note appliesTo="source">line: 32</note>
 </notes>
 <segment>
 <source>All commands can be remapped from NVDA's Input Gestures dialog under the "Window State" category.</source>
@@ -206,7 +215,7 @@ $(ID:c42900d6-58dd-48f0-883a-3906bead49c7)
 </unit>
 <unit id="ac900c0c-7827-4728-af9f-3d6cb99615e2">
 <notes>
-<note appliesTo="source">line: 33</note>
+<note appliesTo="source">line: 34</note>
 <note appliesTo="source">prefix: ## </note>
 </notes>
 <segment>
@@ -215,7 +224,7 @@ $(ID:c42900d6-58dd-48f0-883a-3906bead49c7)
 </unit>
 <unit id="3c92310b-2b59-4083-861b-1621d086b2a9">
 <notes>
-<note appliesTo="source">line: 35</note>
+<note appliesTo="source">line: 36</note>
 </notes>
 <segment>
 <source>- NVDA 2026.1 or later</source>
@@ -223,7 +232,7 @@ $(ID:c42900d6-58dd-48f0-883a-3906bead49c7)
 </unit>
 <unit id="e150804e-7ae6-4bf6-b851-79bcfb5b7fe8">
 <notes>
-<note appliesTo="source">line: 37</note>
+<note appliesTo="source">line: 38</note>
 <note appliesTo="source">prefix: ## </note>
 </notes>
 <segment>
@@ -232,7 +241,7 @@ $(ID:c42900d6-58dd-48f0-883a-3906bead49c7)
 </unit>
 <unit id="2e099920-4d70-4a87-9a2a-7f48b207abd4">
 <notes>
-<note appliesTo="source">line: 39</note>
+<note appliesTo="source">line: 40</note>
 </notes>
 <segment>
 <source>Lanie Carmelo-Molinar</source>
@@ -240,7 +249,7 @@ $(ID:c42900d6-58dd-48f0-883a-3906bead49c7)
 </unit>
 <unit id="385160d6-9276-4a2d-aaca-fb00156cb7ad">
 <notes>
-<note appliesTo="source">line: 40</note>
+<note appliesTo="source">line: 41</note>
 </notes>
 <segment>
 <source>https://lanie.work</source>
@@ -248,7 +257,7 @@ $(ID:c42900d6-58dd-48f0-883a-3906bead49c7)
 </unit>
 <unit id="83d8ec77-8016-4b54-9a3c-323808fdbe57">
 <notes>
-<note appliesTo="source">line: 42</note>
+<note appliesTo="source">line: 43</note>
 <note appliesTo="source">prefix: ## </note>
 </notes>
 <segment>
@@ -257,7 +266,7 @@ $(ID:c42900d6-58dd-48f0-883a-3906bead49c7)
 </unit>
 <unit id="c42900d6-58dd-48f0-883a-3906bead49c7">
 <notes>
-<note appliesTo="source">line: 44</note>
+<note appliesTo="source">line: 45</note>
 </notes>
 <segment>
 <source>GPL v2</source>
