@@ -30,7 +30,7 @@ import wx
 import api
 import winUser
 import speech
-from ctypes import Structure, windll, byref, sizeof
+from ctypes import WINFUNCTYPE, Structure, byref, c_int, c_void_p, sizeof, windll
 from ctypes.wintypes import DWORD, POINT, RECT, UINT
 from utils.security import objectBelowLockScreenAndWindowsIsLocked
 
@@ -73,6 +73,18 @@ MSG_TOP_RIGHT = _("top right quarter")
 MSG_BOTTOM_LEFT = _("bottom left quarter")
 # Translators: spoken when window is in the bottom-right quarter
 MSG_BOTTOM_RIGHT = _("bottom right quarter")
+# Translators: spoken when window is snapped to the left third
+MSG_LEFT_THIRD = _("left third")
+# Translators: spoken when window is snapped to the middle third
+MSG_MIDDLE_THIRD = _("middle third")
+# Translators: spoken when window is snapped to the right third
+MSG_RIGHT_THIRD = _("right third")
+# Translators: spoken when window is snapped to the left two-thirds
+MSG_LEFT_TWO_THIRDS = _("left two thirds")
+# Translators: spoken when window is snapped to the right two-thirds
+MSG_RIGHT_TWO_THIRDS = _("right two thirds")
+# Translators: Appended to the window state to indicate which display the window is on
+MSG_ON_DISPLAY = _("on display {number}")
 # Translators: spoken when window state cannot be determined
 MSG_UNKNOWN = _("unknown window state")
 # Translators: spoken when the window cannot be resized (e.g., the Desktop)
@@ -163,6 +175,46 @@ def getMonitorInfo(hwnd: int) -> tuple[int, int, int, int] | None:
 	return None
 
 
+# Ensure MonitorFromWindow returns a full-width handle rather than a
+# truncated 32-bit value, so it can be compared against the handles
+# returned by EnumDisplayMonitors.
+windll.user32.MonitorFromWindow.restype = c_void_p
+
+# Callback type for EnumDisplayMonitors. The callback receives the monitor
+# handle, a device context handle, a pointer to the monitor rectangle, and
+# application-defined data. We only need the monitor handle.
+MONITORENUMPROC = WINFUNCTYPE(c_int, c_void_p, c_void_p, c_void_p, c_void_p)
+
+
+def getDisplayNumber(hwnd: int) -> int | None:
+	"""Get the 1-based display number of the monitor containing the window.
+
+	Enumerates all monitors in the order Windows reports them (which matches
+	the display numbering shown in Windows Settings) and returns the index of
+	the monitor that contains the given window. Returns None on failure.
+	"""
+	try:
+		monitor = windll.user32.MonitorFromWindow(hwnd, 2)  # MONITOR_DEFAULTTONEAREST
+		if not monitor:
+			return None
+
+		monitors: list[int] = []
+
+		def _callback(hMonitor: int, hdcMonitor: int, lprcMonitor: int, dwData: int) -> int:
+			monitors.append(hMonitor)
+			return 1  # continue enumeration
+
+		callback = MONITORENUMPROC(_callback)
+		windll.user32.EnumDisplayMonitors(None, None, callback, 0)
+
+		for index, m in enumerate(monitors, start=1):
+			if m == monitor:
+				return index
+	except Exception:
+		pass
+	return None
+
+
 def isWindowResizable(hwnd: int) -> bool:
 	"""Check if a window has a resizable border (WS_THICKFRAME).
 
@@ -224,6 +276,11 @@ def detectSnapState(
 	atTop = abs(win_t - wt) <= tol
 	atBottom = abs(win_b - wb) <= tol
 
+	thirdWidth = abs((win_r - win_l) - (workWidth // 3)) <= tol
+	twoThirdsWidth = abs((win_r - win_l) - (2 * (workWidth // 3))) <= tol
+	atLeftThird = abs(win_l - (wl + workWidth // 3)) <= tol
+	atRightThird = abs(win_r - (wr - workWidth // 3)) <= tol
+
 	# Half-screen snaps
 	if halfWidth and fullHeight:
 		if atLeft:
@@ -235,6 +292,20 @@ def detectSnapState(
 			return MSG_DOCKED_TOP
 		if atBottom:
 			return MSG_DOCKED_BOTTOM
+
+	# Third-screen snaps (Windows 11 Snap Layouts)
+	if thirdWidth and fullHeight:
+		if atLeft:
+			return MSG_LEFT_THIRD
+		if atRight:
+			return MSG_RIGHT_THIRD
+		if atLeftThird and atRightThird:
+			return MSG_MIDDLE_THIRD
+	if twoThirdsWidth and fullHeight:
+		if atLeft:
+			return MSG_LEFT_TWO_THIRDS
+		if atRight:
+			return MSG_RIGHT_TWO_THIRDS
 
 	# Quarter-screen snaps
 	if halfWidth and halfHeight:
@@ -300,6 +371,26 @@ def getWindowStateText(hwnd: int | None = None) -> str:
 	return MSG_RESTORED
 
 
+def _appendDisplayNumber(stateText: str, hwnd: int) -> str:
+	"""Append the display number to the state text if the setting is enabled.
+
+	Returns the state text unchanged if the setting is off or the display
+	number cannot be determined.
+	"""
+	try:
+		enabled = SettingsPanel._toBool(
+			config.conf[CONFIG_KEY].get("reportDisplayNumber", False),
+		)
+	except (KeyError, AttributeError):
+		enabled = False
+	if not enabled:
+		return stateText
+	display = getDisplayNumber(hwnd)
+	if display is None:
+		return stateText
+	return f"{stateText}, {MSG_ON_DISPLAY.format(number=display)}"
+
+
 # ---------------------------------------------------------------------------
 # Settings panel
 # ---------------------------------------------------------------------------
@@ -321,6 +412,15 @@ class SettingsPanel(gui.settingsDialogs.SettingsPanel):
 		)
 		sizer.Add(self._appendToTitleCheckbox, border=10, flag=wx.ALL)
 
+		self._reportDisplayNumberCheckbox = wx.CheckBox(
+			self,
+			label=_("Report the display number with the window state"),
+		)
+		self._reportDisplayNumberCheckbox.SetValue(
+			self._toBool(settings.get("reportDisplayNumber", False)),
+		)
+		sizer.Add(self._reportDisplayNumberCheckbox, border=10, flag=wx.ALL)
+
 		helpText = wx.StaticText(
 			self,
 			label=_(
@@ -336,6 +436,7 @@ class SettingsPanel(gui.settingsDialogs.SettingsPanel):
 	def onSave(self):
 		settings = config.conf[CONFIG_KEY]
 		settings["appendToTitle"] = self._appendToTitleCheckbox.IsChecked()
+		settings["reportDisplayNumber"] = self._reportDisplayNumberCheckbox.IsChecked()
 
 	@staticmethod
 	def _toBool(val, default=False):
@@ -365,6 +466,8 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		# Set defaults
 		if "appendToTitle" not in config.conf[CONFIG_KEY]:
 			config.conf[CONFIG_KEY]["appendToTitle"] = False
+		if "reportDisplayNumber" not in config.conf[CONFIG_KEY]:
+			config.conf[CONFIG_KEY]["reportDisplayNumber"] = False
 
 	def terminate(self):
 		# Unregister the settings panel
@@ -388,7 +491,10 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		speakOnDemand=True,
 	)
 	def script_reportWindowState(self, gesture):
-		stateText = getWindowStateText()
+		hwnd = winUser.getForegroundWindow()
+		stateText = getWindowStateText(hwnd)
+		if hwnd:
+			stateText = _appendDisplayNumber(stateText, hwnd)
 		ui.message(stateText)
 
 	# -----------------------------------------------------------------------
@@ -436,6 +542,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			hwnd = winUser.getForegroundWindow()
 			if hwnd:
 				stateText = getWindowStateText(hwnd)
+				stateText = _appendDisplayNumber(stateText, hwnd)
 
 		repeatCount = scriptHandler.getLastScriptRepeatCount()
 		if repeatCount == 0:

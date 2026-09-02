@@ -18,6 +18,8 @@ NVDA doesn't tell you whether a window is maximized, restored, or snapped to a s
    - Minimized
    - Docked left, docked right, docked top, docked bottom (half-screen snaps)
    - Top left quarter, top right quarter, bottom left quarter, bottom right quarter
+   - Left third, middle third, right third (Windows 11 Snap Layout thirds)
+   - Left two thirds, right two thirds (Windows 11 Snap Layout two-thirds)
    - Not resizable (for windows like the Desktop that can't be maximized or restored)
 
 2. **Optional: NVDA+T enhancement**: When enabled in settings, pressing NVDA+T will announce the window title followed by the state, e.g. "Firefox, maximized." This matches the JAWS behavior. Pressing NVDA+T twice to spell the title and three times to copy it to the clipboard are not affected.
@@ -27,6 +29,8 @@ NVDA doesn't tell you whether a window is maximized, restored, or snapped to a s
 Open NVDA Settings > Window State to configure:
 
 - **Append window state to NVDA+T title announcement**: When checked, NVDA+T includes the window state after the title. Off by default.
+
+- **Report the display number with the window state**: When checked, the window state is followed by the display number (e.g. "restored, on display 1"). Useful when working with multiple monitors. Off by default.
 
 All commands can be remapped from NVDA's Input Gestures dialog under the "Window State" category.
 

@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.3.0
+
+- Added detection of Windows 11 Snap Layout thirds: left third, middle third, right third, left two thirds, and right two thirds.
+- Added an optional "Report the display number with the window state" setting. When enabled, the window state is followed by the display number (e.g. "restored, on display 1"), matching JAWS behavior for multiple monitors. Off by default.
+
 ## v1.2.0
 
 - The Desktop and other non-resizable windows now report "not resizable" instead of "restored" when queried with NVDA+Shift+T. This matches JAWS behavior for windows that can't be maximized or restored.
