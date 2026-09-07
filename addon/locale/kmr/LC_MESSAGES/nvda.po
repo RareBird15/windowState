@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nvdaaddons\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
-"POT-Creation-Date: 2026-08-31 03:09+0000\n"
-"PO-Revision-Date: 2026-08-31 03:10\n"
+"POT-Creation-Date: 2026-09-07 02:36+0000\n"
+"PO-Revision-Date: 2026-09-07 02:38\n"
 "Last-Translator: \n"
 "Language-Team: Kurmanji (Kurdish)\n"
 "Language: kmr_TR\n"
@@ -73,13 +73,44 @@ msgstr "çaryeka çepê ya jêrîn"
 msgid "bottom right quarter"
 msgstr "çaryeka rastê ya jêrîn"
 
-#. Translators: spoken when window state cannot be determined
+#. Translators: spoken when window is snapped to the left third
 #: addon\globalPlugins\windowState.py:77
+msgid "left third"
+msgstr ""
+
+#. Translators: spoken when window is snapped to the middle third
+#: addon\globalPlugins\windowState.py:79
+msgid "middle third"
+msgstr ""
+
+#. Translators: spoken when window is snapped to the right third
+#: addon\globalPlugins\windowState.py:81
+msgid "right third"
+msgstr ""
+
+#. Translators: spoken when window is snapped to the left two-thirds
+#: addon\globalPlugins\windowState.py:83
+msgid "left two thirds"
+msgstr ""
+
+#. Translators: spoken when window is snapped to the right two-thirds
+#: addon\globalPlugins\windowState.py:85
+msgid "right two thirds"
+msgstr ""
+
+#. Translators: Appended to the window state to indicate which display the window is on
+#: addon\globalPlugins\windowState.py:87
+#, python-brace-format
+msgid "on display {number}"
+msgstr ""
+
+#. Translators: spoken when window state cannot be determined
+#: addon\globalPlugins\windowState.py:89
 msgid "unknown window state"
 msgstr "rewşa pencereyê nenas"
 
 #. Translators: spoken when the window cannot be resized (e.g., the Desktop)
-#: addon\globalPlugins\windowState.py:79
+#: addon\globalPlugins\windowState.py:91
 msgid "not resizable"
 msgstr ""
 
@@ -87,36 +118,40 @@ msgstr ""
 #. Add-on summary/title, usually the user visible name of the add-on
 #. Translators: Summary/title for this add-on
 #. to be shown on installation and add-on information found in add-on store
-#: addon\globalPlugins\windowState.py:309
-#: addon\globalPlugins\windowState.py:356
-#: addon\globalPlugins\windowState.py:386 buildVars.py:21
+#: addon\globalPlugins\windowState.py:400
+#: addon\globalPlugins\windowState.py:457
+#: addon\globalPlugins\windowState.py:489 buildVars.py:21
 msgid "Window State"
 msgstr "Rewşa Paceyê"
 
-#: addon\globalPlugins\windowState.py:317
+#: addon\globalPlugins\windowState.py:408
 msgid "Append window state to NVDA+T title announcement"
 msgstr "Rewşa pencereyê li ragihandina sernavê NVDA+T zêde bike"
 
-#: addon\globalPlugins\windowState.py:327
+#: addon\globalPlugins\windowState.py:417
+msgid "Report the display number with the window state"
+msgstr ""
+
+#: addon\globalPlugins\windowState.py:427
 msgid "When enabled, pressing NVDA+T will announce the window title followed by the window state (e.g. 'Firefox, maximized'). This matches the JAWS behavior. Pressing NVDA+T twice to spell or three times to copy is not affected."
 msgstr "Dema ku çalak be, pêlkirina NVDA+T dê sernavê pencereyê û dû re jî rewşa pencereyê ragihîne (mînak 'Firefox, herî zêdekirî'). Ev bi tevgera JAWS re li hev dike. Du caran pêlkirina NVDA+T ji bo nivîsandinê an sê caran pêlkirina NVDA+T ji bo kopîkirinê bandor nabe."
 
 #. Translators: Input help message for the report window state command.
-#: addon\globalPlugins\windowState.py:383
+#: addon\globalPlugins\windowState.py:486
 msgid "Reports the state of the current foreground window (maximized, restored, minimized, or snapped to a side or quarter of the screen)."
 msgstr "Rewşa pencereya pêşiyê ya heyî radigihîne (mezintirîn, sererastkirî, kêmkirî, an jî li aliyek an çaryeka ekranê hatî kişandin)."
 
 #. Translators: Input help message for the report title command (overridden).
-#: addon\globalPlugins\windowState.py:401
+#: addon\globalPlugins\windowState.py:507
 msgid "Reports the title of the current application or foreground window. If window state reporting is enabled in settings, the state is appended. If pressed twice, spells the title. If pressed three times, copies the title to the clipboard."
 msgstr "Sernavê serîlêdana heyî an pencereya pêşiyê radigihîne. Ger ragihandina rewşa pencereyê di mîhengan de çalak be, rewş lê tê zêdekirin. Ger du caran were pêlkirin, sernav tê nivîsandin. Ger sê caran were pêlkirin, sernavê li panoyê kopî dike."
 
-#: addon\globalPlugins\windowState.py:406
+#: addon\globalPlugins\windowState.py:512
 msgid "System focus"
 msgstr "Fokusa sîstemê"
 
 #. Translators: Reported when there is no title text for current program or window.
-#: addon\globalPlugins\windowState.py:423
+#: addon\globalPlugins\windowState.py:529
 msgid "No title"
 msgstr "Sernav nînin"
 
@@ -129,6 +164,6 @@ msgstr "Fermanekê lê zêde dike da ku rewşa pencereya pêşiyê ya heyî ragi
 #. Brief changelog for this version
 #. Translators: what's new content for the add-on version to be shown in the add-on store
 #: buildVars.py:29
-msgid "The Desktop and other non-resizable windows now report \"not resizable\" instead of \"restored\" when queried with NVDA+Shift+T."
+msgid "Added detection of Windows 11 Snap Layout thirds (left, middle, and right thirds, plus the two-thirds combinations). Added an optional setting to report which display a window is on, matching JAWS behavior for multiple monitors."
 msgstr ""
 

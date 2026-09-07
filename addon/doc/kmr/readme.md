@@ -18,6 +18,8 @@ Dema ku hûn sernavê lêpirsîn dikin, NVDA ji we re nabêje ka pencereyek mezi
    - Kêmkirî
    - Çep ve girêdayî, rast ve girêdayî, jor ve girêdayî, jêr ve girêdayî (wêneyên nîv-ekranê)
    - Çêra jorîn a çepê, çera jorîn a rastê, çera jêrîn a çepê, çera jêrîn a rastê
+   - Left third, middle third, right third (Windows 11 Snap Layout thirds)
+   - Left two thirds, right two thirds (Windows 11 Snap Layout two-thirds)
    - Not resizable (for windows like the Desktop that can't be maximized or restored)
 
 2. **Vebijarkî: Pêşxistina NVDA+T**: Dema ku di mîhengan de çalak be, pêlkirina NVDA+T dê sernavê pencereyê û dû re jî rewşê ragihîne, mînak "Firefox, herî zêdekirî." Ev bi tevgera JAWS re li hev dike. Du caran pêlkirina NVDA+T ji bo nivîsandina sernavê û sê caran pêlkirina wê ji bo kopîkirina wê li ser clipboardê bandor nabe.
@@ -27,6 +29,8 @@ Dema ku hûn sernavê lêpirsîn dikin, NVDA ji we re nabêje ka pencereyek mezi
 Ji bo mîhengkirinê, Mîhengên NVDA > Rewşa Paceyê veke:
 
 - **Rewşa pencereyê li ragihandina sernavê NVDA+T zêde bike**: Dema ku were kontrol kirin, NVDA+T rewşa pencereyê piştî sernavê vedihewîne. Bi xwerû ve girtî ye.
+
+- **Report the display number with the window state**: When checked, the window state is followed by the display number (e.g. "restored, on display 1"). Useful when working with multiple monitors. Off by default.
 
 Hemû ferman dikarin ji diyaloga Jestên Têketinê ya NVDA-yê di bin kategoriya "Rewşa Paceyê" de ji nû ve werin nexşekirin.
 

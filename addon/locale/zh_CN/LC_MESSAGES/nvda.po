@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nvdaaddons\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
-"POT-Creation-Date: 2026-08-31 03:09+0000\n"
-"PO-Revision-Date: 2026-08-31 03:10\n"
+"POT-Creation-Date: 2026-09-07 02:36+0000\n"
+"PO-Revision-Date: 2026-09-07 02:37\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -73,50 +73,85 @@ msgstr "左下四分之一"
 msgid "bottom right quarter"
 msgstr "右下四分之一"
 
-#. Translators: spoken when window state cannot be determined
+#. Translators: spoken when window is snapped to the left third
 #: addon\globalPlugins\windowState.py:77
+msgid "left third"
+msgstr ""
+
+#. Translators: spoken when window is snapped to the middle third
+#: addon\globalPlugins\windowState.py:79
+msgid "middle third"
+msgstr ""
+
+#. Translators: spoken when window is snapped to the right third
+#: addon\globalPlugins\windowState.py:81
+msgid "right third"
+msgstr ""
+
+#. Translators: spoken when window is snapped to the left two-thirds
+#: addon\globalPlugins\windowState.py:83
+msgid "left two thirds"
+msgstr ""
+
+#. Translators: spoken when window is snapped to the right two-thirds
+#: addon\globalPlugins\windowState.py:85
+msgid "right two thirds"
+msgstr ""
+
+#. Translators: Appended to the window state to indicate which display the window is on
+#: addon\globalPlugins\windowState.py:87
+#, python-brace-format
+msgid "on display {number}"
+msgstr ""
+
+#. Translators: spoken when window state cannot be determined
+#: addon\globalPlugins\windowState.py:89
 msgid "unknown window state"
 msgstr "未知窗口状态"
 
 #. Translators: spoken when the window cannot be resized (e.g., the Desktop)
-#: addon\globalPlugins\windowState.py:79
+#: addon\globalPlugins\windowState.py:91
 msgid "not resizable"
-msgstr ""
+msgstr "固定大小"
 
 #. Script category for the Input Gestures dialog
 #. Add-on summary/title, usually the user visible name of the add-on
 #. Translators: Summary/title for this add-on
 #. to be shown on installation and add-on information found in add-on store
-#: addon\globalPlugins\windowState.py:309
-#: addon\globalPlugins\windowState.py:356
-#: addon\globalPlugins\windowState.py:386 buildVars.py:21
+#: addon\globalPlugins\windowState.py:400
+#: addon\globalPlugins\windowState.py:457
+#: addon\globalPlugins\windowState.py:489 buildVars.py:21
 msgid "Window State"
 msgstr "窗口状态"
 
-#: addon\globalPlugins\windowState.py:317
+#: addon\globalPlugins\windowState.py:408
 msgid "Append window state to NVDA+T title announcement"
 msgstr "按 NVDA+T 读出标题时追加窗口状态"
 
-#: addon\globalPlugins\windowState.py:327
+#: addon\globalPlugins\windowState.py:417
+msgid "Report the display number with the window state"
+msgstr ""
+
+#: addon\globalPlugins\windowState.py:427
 msgid "When enabled, pressing NVDA+T will announce the window title followed by the window state (e.g. 'Firefox, maximized'). This matches the JAWS behavior. Pressing NVDA+T twice to spell or three times to copy is not affected."
 msgstr "启用后，按 NVDA+T 将读出窗口标题后跟窗口状态（例如“Firefox, 最大化”）。此行为与 JAWS 一致。按 NVDA+T 两次逐字朗读或三次复制到剪贴板的功能不受影响。"
 
 #. Translators: Input help message for the report window state command.
-#: addon\globalPlugins\windowState.py:383
+#: addon\globalPlugins\windowState.py:486
 msgid "Reports the state of the current foreground window (maximized, restored, minimized, or snapped to a side or quarter of the screen)."
 msgstr "读出当前前台窗口的状态（最大化、还原、最小化，或贴靠到屏幕的一侧或四分之一）。"
 
 #. Translators: Input help message for the report title command (overridden).
-#: addon\globalPlugins\windowState.py:401
+#: addon\globalPlugins\windowState.py:507
 msgid "Reports the title of the current application or foreground window. If window state reporting is enabled in settings, the state is appended. If pressed twice, spells the title. If pressed three times, copies the title to the clipboard."
 msgstr "读出当前应用程序或前台窗口的标题。如果在设置中启用了追加窗口状态，则会在标题后附加状态信息。连按两次逐字朗读标题，连按三次将标题复制到剪贴板。"
 
-#: addon\globalPlugins\windowState.py:406
+#: addon\globalPlugins\windowState.py:512
 msgid "System focus"
 msgstr "系统焦点"
 
 #. Translators: Reported when there is no title text for current program or window.
-#: addon\globalPlugins\windowState.py:423
+#: addon\globalPlugins\windowState.py:529
 msgid "No title"
 msgstr "无标题"
 
@@ -129,6 +164,6 @@ msgstr "新增一个命令，用于读出当前前台窗口的状态（最大化
 #. Brief changelog for this version
 #. Translators: what's new content for the add-on version to be shown in the add-on store
 #: buildVars.py:29
-msgid "The Desktop and other non-resizable windows now report \"not resizable\" instead of \"restored\" when queried with NVDA+Shift+T."
+msgid "Added detection of Windows 11 Snap Layout thirds (left, middle, and right thirds, plus the two-thirds combinations). Added an optional setting to report which display a window is on, matching JAWS behavior for multiple monitors."
 msgstr ""
 

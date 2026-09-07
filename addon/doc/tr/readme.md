@@ -18,7 +18,9 @@ NVDA, başlığı sorguladığınızda pencerenin ekranı kapladığını, geri 
    - Simge durumuna küçültülmüş
    - Sola yerleştirildi, sağa yerleştirildi, üste yerleştirildi, alta yerleştirildi (yarım ekran yerleşimleri)
    - Sol üst çeyrek, sağ üst çeyrek, sol alt çeyrek, sağ alt çeyrek
-   - Not resizable (for windows like the Desktop that can't be maximized or restored)
+   - Left third, middle third, right third (Windows 11 Snap Layout thirds)
+   - Left two thirds, right two thirds (Windows 11 Snap Layout two-thirds)
+   - Yeniden boyutlandırılamaz (masaüstü gibi büyütülemeyen veya eski haline getirilemeyen pencereler için)
 
 2. **İsteğe bağlı: NVDA+T geliştirmesi**: Ayarlarda etkinleştirildiğinde, NVDA+T tuşlarına basıldığında pencere başlığı ve ardından durumu sesli olarak duyurulur; örneğin, "Firefox, tam ekran." Bu, JAWS'ın davranışına uygundur. Başlığı hecelemek için NVDA+T tuşlarına iki kez basma ve panoya kopyalamak için üç kez basma işlemleri bu ayardan etkilenmez.
 
@@ -27,6 +29,8 @@ NVDA, başlığı sorguladığınızda pencerenin ekranı kapladığını, geri 
 Yapılandırmak için NVDA Menüsü, Tercihler, Ayarlar > Pencere Durumu'nu açın:
 
 - **NVDA+T başlığı seslendir seçeneğine pencere durumunu ekle**: Bu seçenek işaretlendiğinde, NVDA+T başlığı seslendirmenin ardından pencere durumunu da ekler. Varsayılan olarak kapalıdır.
+
+- **Report the display number with the window state**: When checked, the window state is followed by the display number (e.g. "restored, on display 1"). Useful when working with multiple monitors. Off by default.
 
 Tüm komutlar, NVDA'nın Girdi Hareketleri iletişim kutusunda "Pencere Durumu" kategorisi altında yeniden eşlenebilir.
 
