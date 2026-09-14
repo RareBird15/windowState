@@ -18,8 +18,8 @@ NVDA 在查询窗口标题时，不会告知您窗口是最大化、还原，还
    - 最小化
    - 左侧贴靠、右侧贴靠、顶部贴靠、底部贴靠（半屏贴靠）
    - 左上四分之一、右上四分之一、左下四分之一、右下四分之一
-   - Left third, middle third, right third (Windows 11 Snap Layout thirds)
-   - Left two thirds, right two thirds (Windows 11 Snap Layout two-thirds)
+   - 左侧三分之一、中间三分之一、右侧三分之一（Windows 11 贴靠布局三分区）
+   - 左侧三分之二、右侧三分之二（Windows 11 贴靠布局三分之二）
    - 固定大小（适用于桌面等无法最大化或还原的窗口）
 
 2. **可选的 NVDA+T 增强**：在设置中启用后，按 NVDA+T 将读出窗口标题后跟状态，例如“Firefox, 最大化。”此行为与 JAWS 一致。按 NVDA+T 两次逐字朗读标题、按三次复制到剪贴板的功能不受影响。
@@ -30,7 +30,7 @@ NVDA 在查询窗口标题时，不会告知您窗口是最大化、还原，还
 
 - **按 NVDA+T 读出标题时追加窗口状态**：选中后，会在按 NVDA+T 读出标题时包含窗口状态信息。默认关闭。
 
-- **Report the display number with the window state**: When checked, the window state is followed by the display number (e.g. "restored, on display 1"). Useful when working with multiple monitors. Off by default.
+- **读出窗口所在的显示器编号**：选中后，窗口状态后将会读出显示器编号（例如“还原, 显示器 1”）。在多显示器环境中工作时非常有用。默认关闭。
 
 所有命令均可在 NVDA “按键与手势”对话框的“窗口状态”类别中重新分配。
 

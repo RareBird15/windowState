@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: nvdaaddons\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
 "POT-Creation-Date: 2026-09-07 02:36+0000\n"
-"PO-Revision-Date: 2026-09-07 02:37\n"
+"PO-Revision-Date: 2026-09-14 02:16\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -76,33 +76,33 @@ msgstr "右下四分之一"
 #. Translators: spoken when window is snapped to the left third
 #: addon\globalPlugins\windowState.py:77
 msgid "left third"
-msgstr ""
+msgstr "左侧三分之一"
 
 #. Translators: spoken when window is snapped to the middle third
 #: addon\globalPlugins\windowState.py:79
 msgid "middle third"
-msgstr ""
+msgstr "中间三分之一"
 
 #. Translators: spoken when window is snapped to the right third
 #: addon\globalPlugins\windowState.py:81
 msgid "right third"
-msgstr ""
+msgstr "右侧三分之一"
 
 #. Translators: spoken when window is snapped to the left two-thirds
 #: addon\globalPlugins\windowState.py:83
 msgid "left two thirds"
-msgstr ""
+msgstr "左侧三分之二"
 
 #. Translators: spoken when window is snapped to the right two-thirds
 #: addon\globalPlugins\windowState.py:85
 msgid "right two thirds"
-msgstr ""
+msgstr "右侧三分之二"
 
 #. Translators: Appended to the window state to indicate which display the window is on
 #: addon\globalPlugins\windowState.py:87
 #, python-brace-format
 msgid "on display {number}"
-msgstr ""
+msgstr "显示器 {number}"
 
 #. Translators: spoken when window state cannot be determined
 #: addon\globalPlugins\windowState.py:89
@@ -130,7 +130,7 @@ msgstr "按 NVDA+T 读出标题时追加窗口状态"
 
 #: addon\globalPlugins\windowState.py:417
 msgid "Report the display number with the window state"
-msgstr ""
+msgstr "读出窗口所在的显示器编号"
 
 #: addon\globalPlugins\windowState.py:427
 msgid "When enabled, pressing NVDA+T will announce the window title followed by the window state (e.g. 'Firefox, maximized'). This matches the JAWS behavior. Pressing NVDA+T twice to spell or three times to copy is not affected."
@@ -165,5 +165,5 @@ msgstr "新增一个命令，用于读出当前前台窗口的状态（最大化
 #. Translators: what's new content for the add-on version to be shown in the add-on store
 #: buildVars.py:29
 msgid "Added detection of Windows 11 Snap Layout thirds (left, middle, and right thirds, plus the two-thirds combinations). Added an optional setting to report which display a window is on, matching JAWS behavior for multiple monitors."
-msgstr ""
+msgstr "新增了对 Windows 11 贴靠布局三列分区（左、中、右三栏，以及三分之二组合）的检测功能。新增了一个可选设置，用于读出窗口所在的显示器，以匹配多显示器环境下 JAWS 的行为。"
 

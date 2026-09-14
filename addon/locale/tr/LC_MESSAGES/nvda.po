@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: nvdaaddons\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
 "POT-Creation-Date: 2026-09-07 02:36+0000\n"
-"PO-Revision-Date: 2026-09-07 02:38\n"
+"PO-Revision-Date: 2026-09-14 00:07\n"
 "Last-Translator: \n"
 "Language-Team: Turkish\n"
 "Language: tr_TR\n"
@@ -76,33 +76,33 @@ msgstr "sağ alt çeyrek"
 #. Translators: spoken when window is snapped to the left third
 #: addon\globalPlugins\windowState.py:77
 msgid "left third"
-msgstr ""
+msgstr "sol üçte biri"
 
 #. Translators: spoken when window is snapped to the middle third
 #: addon\globalPlugins\windowState.py:79
 msgid "middle third"
-msgstr ""
+msgstr "orta üçte birlik kısım"
 
 #. Translators: spoken when window is snapped to the right third
 #: addon\globalPlugins\windowState.py:81
 msgid "right third"
-msgstr ""
+msgstr "sağ üçte biri"
 
 #. Translators: spoken when window is snapped to the left two-thirds
 #: addon\globalPlugins\windowState.py:83
 msgid "left two thirds"
-msgstr ""
+msgstr "sol üçte iki"
 
 #. Translators: spoken when window is snapped to the right two-thirds
 #: addon\globalPlugins\windowState.py:85
 msgid "right two thirds"
-msgstr ""
+msgstr "sağ üçte iki"
 
 #. Translators: Appended to the window state to indicate which display the window is on
 #: addon\globalPlugins\windowState.py:87
 #, python-brace-format
 msgid "on display {number}"
-msgstr ""
+msgstr "ekranda {number}"
 
 #. Translators: spoken when window state cannot be determined
 #: addon\globalPlugins\windowState.py:89
@@ -130,7 +130,7 @@ msgstr "NVDA+T başlığı oku seçeneğine pencere durumu ekle"
 
 #: addon\globalPlugins\windowState.py:417
 msgid "Report the display number with the window state"
-msgstr ""
+msgstr "Ekran numarasını pencere durumuyla birlikte bildir"
 
 #: addon\globalPlugins\windowState.py:427
 msgid "When enabled, pressing NVDA+T will announce the window title followed by the window state (e.g. 'Firefox, maximized'). This matches the JAWS behavior. Pressing NVDA+T twice to spell or three times to copy is not affected."
@@ -165,5 +165,5 @@ msgstr "Geçerli ön plandaki pencerenin durumunu (büyütülmüş, geri yüklen
 #. Translators: what's new content for the add-on version to be shown in the add-on store
 #: buildVars.py:29
 msgid "Added detection of Windows 11 Snap Layout thirds (left, middle, and right thirds, plus the two-thirds combinations). Added an optional setting to report which display a window is on, matching JAWS behavior for multiple monitors."
-msgstr ""
+msgstr "Windows 11 Snap Layout üçte bir bölmelerinin (sol, orta ve sağ üçte birler ile iki üçte bir kombinasyonları) algılanması özelliği eklendi. Bir pencerenin hangi ekranda olduğunu bildiren isteğe bağlı bir ayar eklendi; bu, çoklu monitörlerde JAWS’ın davranışına uygundur."
 
