@@ -3,17 +3,17 @@ msgstr ""
 "Project-Id-Version: nvdaaddons\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
 "POT-Creation-Date: 2026-09-07 02:36+0000\n"
-"PO-Revision-Date: 2026-09-28 00:08\n"
+"PO-Revision-Date: 2026-09-27 11:24\n"
 "Last-Translator: \n"
-"Language-Team: Turkish\n"
-"Language: tr_TR\n"
+"Language-Team: Russian\n"
+"Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
 "X-Crowdin-Project: nvdaaddons\n"
 "X-Crowdin-Project-ID: 780748\n"
-"X-Crowdin-Language: tr\n"
+"X-Crowdin-Language: ru\n"
 "X-Crowdin-File: windowState.pot\n"
 "X-Crowdin-File-ID: 653\n"
 
@@ -21,98 +21,98 @@ msgstr ""
 #. Translators: spoken when window is maximized
 #: addon\globalPlugins\windowState.py:55
 msgid "maximized"
-msgstr "ekranı kaplamış"
+msgstr "развёрнуто"
 
 #. Translators: spoken when window is restored (normal windowed mode)
 #: addon\globalPlugins\windowState.py:57
 msgid "restored"
-msgstr "geri yüklenmiş"
+msgstr "восстановлено"
 
 #. Translators: spoken when window is minimized
 #: addon\globalPlugins\windowState.py:59
 msgid "minimized"
-msgstr "simge durumuna küçültülmüş"
+msgstr "свёрнуто"
 
 #. Translators: spoken when window is docked to the left half
 #: addon\globalPlugins\windowState.py:61
 msgid "docked left"
-msgstr "sola yerleştirildi"
+msgstr "прикреплено слева"
 
 #. Translators: spoken when window is docked to the right half
 #: addon\globalPlugins\windowState.py:63
 msgid "docked right"
-msgstr "sağa yerleştirildi"
+msgstr "прикреплено справа"
 
 #. Translators: spoken when window is docked to the top half
 #: addon\globalPlugins\windowState.py:65
 msgid "docked top"
-msgstr "üste yerleştirildi"
+msgstr "прикреплено сверху"
 
 #. Translators: spoken when window is docked to the bottom half
 #: addon\globalPlugins\windowState.py:67
 msgid "docked bottom"
-msgstr "alta yerleştirildi"
+msgstr "прикреплено снизу"
 
 #. Translators: spoken when window is in the top-left quarter
 #: addon\globalPlugins\windowState.py:69
 msgid "top left quarter"
-msgstr "sol üst çeyrek"
+msgstr "верхняя левая четверть"
 
 #. Translators: spoken when window is in the top-right quarter
 #: addon\globalPlugins\windowState.py:71
 msgid "top right quarter"
-msgstr "sağ üst çeyrek"
+msgstr "верхняя правая четверть"
 
 #. Translators: spoken when window is in the bottom-left quarter
 #: addon\globalPlugins\windowState.py:73
 msgid "bottom left quarter"
-msgstr "sol alt çeyrek"
+msgstr "нижняя левая четверть"
 
 #. Translators: spoken when window is in the bottom-right quarter
 #: addon\globalPlugins\windowState.py:75
 msgid "bottom right quarter"
-msgstr "sağ alt çeyrek"
+msgstr "нижняя правая четверть"
 
 #. Translators: spoken when window is snapped to the left third
 #: addon\globalPlugins\windowState.py:77
 msgid "left third"
-msgstr "sol üçte biri"
+msgstr "левая треть"
 
 #. Translators: spoken when window is snapped to the middle third
 #: addon\globalPlugins\windowState.py:79
 msgid "middle third"
-msgstr "orta üçte birlik kısım"
+msgstr "средняя треть"
 
 #. Translators: spoken when window is snapped to the right third
 #: addon\globalPlugins\windowState.py:81
 msgid "right third"
-msgstr "sağ üçte biri"
+msgstr "правая треть"
 
 #. Translators: spoken when window is snapped to the left two-thirds
 #: addon\globalPlugins\windowState.py:83
 msgid "left two thirds"
-msgstr "sol üçte iki"
+msgstr "левые две трети"
 
 #. Translators: spoken when window is snapped to the right two-thirds
 #: addon\globalPlugins\windowState.py:85
 msgid "right two thirds"
-msgstr "sağ üçte iki"
+msgstr "правые две трети"
 
 #. Translators: Appended to the window state to indicate which display the window is on
 #: addon\globalPlugins\windowState.py:87
 #, python-brace-format
 msgid "on display {number}"
-msgstr "ekranda {number}"
+msgstr "на дисплее {number}"
 
 #. Translators: spoken when window state cannot be determined
 #: addon\globalPlugins\windowState.py:89
 msgid "unknown window state"
-msgstr "bilinmeyen pencere durumu"
+msgstr "неизвестное состояние окна"
 
 #. Translators: spoken when the window cannot be resized (e.g., the Desktop)
 #: addon\globalPlugins\windowState.py:91
 msgid "not resizable"
-msgstr "yeniden boyutlandırılamaz"
+msgstr "неизменяемый размер"
 
 #. Script category for the Input Gestures dialog
 #. Add-on summary/title, usually the user visible name of the add-on
@@ -122,48 +122,48 @@ msgstr "yeniden boyutlandırılamaz"
 #: addon\globalPlugins\windowState.py:457
 #: addon\globalPlugins\windowState.py:489 buildVars.py:21
 msgid "Window State"
-msgstr "Pencere Durumu"
+msgstr "Состояние Окна"
 
 #: addon\globalPlugins\windowState.py:408
 msgid "Append window state to NVDA+T title announcement"
-msgstr "NVDA+T başlığı oku seçeneğine pencere durumu ekle"
+msgstr "Добавить состояние окна к объявлению названия NVDA+T"
 
 #: addon\globalPlugins\windowState.py:417
 msgid "Report the display number with the window state"
-msgstr "Ekran numarasını pencere durumuyla birlikte bildir"
+msgstr "Сообщить номер дисплея вместе с состоянием окна"
 
 #: addon\globalPlugins\windowState.py:427
 msgid "When enabled, pressing NVDA+T will announce the window title followed by the window state (e.g. 'Firefox, maximized'). This matches the JAWS behavior. Pressing NVDA+T twice to spell or three times to copy is not affected."
-msgstr "Bu özellik etkinleştirildiğinde, NVDA+T tuşlarına basıldığında pencere başlığı ve ardından pencerenin durumu (örn. 'Firefox, tam ekran') sesli olarak duyurulur. Bu, JAWS'ın davranışına uygundur. NVDA+T tuşlarına iki kez basarak heceleme veya üç kez basarak kopyalama işlemleri bu ayardan etkilenmez."
+msgstr "При включении этой функции в настройках, нажатие NVDA+T будет озвучивать заголовок окна, а затем его состояние (например, `Firefox, развёрнуто`). Это соответствует поведению JAWS. Двойное нажатие NVDA+T для фонетического объявления заголовка и тройное нажатие для копирования его в буфер обмена не затрагиваются."
 
 #. Translators: Input help message for the report window state command.
 #: addon\globalPlugins\windowState.py:486
 msgid "Reports the state of the current foreground window (maximized, restored, minimized, or snapped to a side or quarter of the screen)."
-msgstr "Mevcut ön plandaki pencerenin durumunu seslendirir (ekranı kaplamış, eski haline getirilmiş, küçültülmüş veya ekranın bir kenarına ya da dörtte birine yapıştırılmış)."
+msgstr "Сообщает о состоянии текущего активного окна (развёрнуто, восстановлено, свёрнуто или привязано к боковой стороне или четверти экрана)."
 
 #. Translators: Input help message for the report title command (overridden).
 #: addon\globalPlugins\windowState.py:507
 msgid "Reports the title of the current application or foreground window. If window state reporting is enabled in settings, the state is appended. If pressed twice, spells the title. If pressed three times, copies the title to the clipboard."
-msgstr "Geçerli uygulamanın veya ön plandaki pencerenin başlığını seslendirir. Ayarlarda pencere durumunun seslendirilmesi etkinleştirilmişse, durum bilgisi de eklenir. İki kez basıldığında başlık sesli olarak okunur. Üç kez basıldığında başlık panoya kopyalanır."
+msgstr "Сообщает заголовок текущего приложения или активного окна. Если в настройках включена функция отображения состояния окна, эта информация добавляется к заголовку. При двойном нажатии заголовок сообщается по буквам. При тройном нажатий заголовок копируется в буфер обмена."
 
 #: addon\globalPlugins\windowState.py:512
 msgid "System focus"
-msgstr "Sistem odağı"
+msgstr "Системный фокус"
 
 #. Translators: Reported when there is no title text for current program or window.
 #: addon\globalPlugins\windowState.py:529
 msgid "No title"
-msgstr "Başlık yok"
+msgstr "Без названия"
 
 #. Add-on description
 #. Translators: Long description to be shown for this add-on on add-on information from add-on store
 #: buildVars.py:24
 msgid "Adds a command to announce the state of the current foreground window (maximized, restored, minimized, or snapped to a side or quarter of the screen). Optionally appends the window state to NVDA+T like JAWS does. Helps blind users confirm whether a window is maximized without triggering the Windows snap layout chooser."
-msgstr "Geçerli ön plandaki pencerenin durumunu (büyütülmüş, geri yüklenmiş, küçültülmüş veya ekranın bir kenarına ya da dörtte birine yapıştırılmış) seslendiren bir komut ekler. İsteğe bağlı olarak, JAWS’ın yaptığı gibi pencere durumunu NVDA+T’ye ekler. Görme engelli kullanıcıların, Windows’un yapıştırma düzeni seçicisini tetiklemeden bir pencerenin büyütülmüş olup olmadığını doğrulamasına yardımcı olur."
+msgstr "Добавляет команду для объявления состояния текущего активного окна (развёрнуто, восстановлено, свёрнуто или привязано к боковой или четверти экрана). При желании, как в JAWS, состояние окна может быть добавлено к комбинации клавиш NVDA+T. Помогает незрячим пользователям убедиться, развёрнуто ли окно, без запуска средства выбора расположения окон Windows."
 
 #. Brief changelog for this version
 #. Translators: what's new content for the add-on version to be shown in the add-on store
 #: buildVars.py:29
 msgid "Added detection of Windows 11 Snap Layout thirds (left, middle, and right thirds, plus the two-thirds combinations). Added an optional setting to report which display a window is on, matching JAWS behavior for multiple monitors."
-msgstr "Windows 11 Snap Layout üçte bir bölmelerinin (sol, orta ve sağ üçte birler ile iki üçte bir kombinasyonları) algılanması özelliği eklendi. Bir pencerenin hangi ekranda olduğunu bildiren isteğe bağlı bir ayar eklendi; bu, çoklu monitörlerde JAWS’ın davranışına uygundur."
+msgstr "Добавлено определение третей в режиме Snap Layout Windows 11 (левая, средняя и правая трети, а также комбинации двух третей). Добавлена дополнительная настройка для указания того, на каком дисплее находится окно, что соответствует поведению JAWS при работе с несколькими мониторами."
 
